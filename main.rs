@@ -1,23 +1,19 @@
 use std::io::{self, Read};
 
 fn main() {
-    let mut buffer = [0u8; 1]; // 创建一个字节的缓冲区
+    let mut input = String::new();
     print!("Enter the size of map, (and good luck): ");
 
     loop {
+        input.clear();
         io::stdin()
-            .read(&mut buffer)
+            .read_line(&mut input)
             .expect("Failed to read character");
 
-        // 将字节转换为字符
-        let input_char = buffer[0] as char;
+        print!("{}", input);
 
-        // 打印输入的字符
-        print!("{}\r", input_char);
-
-        // 检查是否是要退出的字符
-        if input_char == 'q' {
-            break; // 退出循环
+        if input.chars().next() == Some('q') && input.len() == 1 {
+            break;
         }
     }
 }
